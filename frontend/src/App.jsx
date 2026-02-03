@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import AppHeader from './components/Header';
+import './App.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <AppHeader />
+      <main className="main-content">
+        <section className="hero">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Master <span className="gradient-text">Cybersecurity</span>
+            </h1>
+            <p className="hero-subtitle">
+              Your personal AI-powered coach for learning cybersecurity skills,
+              from beginner to expert.
+            </p>
+            <div className="hero-actions">
+              <button className="cds--btn cds--btn--primary">Get Started</button>
+              <button className="cds--btn cds--btn--tertiary">Learn More</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
+

@@ -1,0 +1,88 @@
+@use '@carbon/react' with ($theme: (background: #161616,
+        layer-01: #262626,
+        text-primary: #f4f4f4,
+        text-secondary: #c6c6c6,
+        interactive: #0f62fe,
+    ));
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #161616;
+    color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 48px;
+}
+
+.hero {
+    min-height: calc(100vh - 48px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(15, 98, 254, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(190, 149, 255, 0.1) 0%, transparent 50%),
+        #161616;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #f4f4f4;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #0f62fe 0%, #be95ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #c6c6c6;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-actions .cds--btn {
+    min-width: 140px;
+    transition: transform 0.2s ease;
+}
+
+.hero-actions .cds--btn:hover {
+    transform: translateY(-2px);
+}

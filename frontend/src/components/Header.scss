@@ -1,0 +1,62 @@
+@use '@carbon/react';
+
+.header-logo {
+  height: 24px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #0f62fe 0%, #be95ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cds--header {
+  background: rgba(22, 22, 22, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-right: 1rem;
+  align-items: center;
+}
+
+.auth-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #f4f4f4;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, #0f62fe 0%, #be95ff 100%);
+  border: none;
+  color: #fff;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 98, 254, 0.4);
+  }
+}
