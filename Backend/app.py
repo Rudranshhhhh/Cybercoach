@@ -5,6 +5,8 @@ from config import Config
 from services.quiz_service import quiz_service
 from services.report_generator import report_generator
 from services.llm_client import llm_client
+from services.auth_service import auth_service
+from services.database import database
 
 app = Flask(__name__)
 CORS(app)
@@ -20,7 +22,63 @@ def health_check():
     return jsonify({
         "status": "healthy",
         "service": "Cybercoach Backend",
-        "llm_configured": llm_client.is_configured()
+        "llm_configured": llm_client.is_configured(),
+        "db_connected": database.is_connected()
+    })
+
+
+# ============================================================================
+# Auth Endpoints
+# ============================================================================
+
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    """Register a new user."""
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"error": "Request body is required"}), 400
+    
+    email = data.get('email')
+    password = data.get('password')
+    name = data.get('name', '')
+    
+    result, error = auth_service.register(email, password, name)
+    
+    if error:
+        return jsonify({"error": error}), 400
+    
+    return jsonify({
+        "message": "User registered successfully",
+        "user_id": result["user_id"],
+        "email": result["email"],
+        "name": result["name"],
+        "token": result["token"]
+    }), 201
+
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    """Login a user."""
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"error": "Request body is required"}), 400
+    
+    email = data.get('email')
+    password = data.get('password')
+    
+    result, error = auth_service.login(email, password)
+    
+    if error:
+        return jsonify({"error": error}), 401
+    
+    return jsonify({
+        "message": "Login successful",
+        "user_id": result["user_id"],
+        "email": result["email"],
+        "name": result["name"],
+        "token": result["token"]
     })
 
 

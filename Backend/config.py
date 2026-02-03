@@ -11,6 +11,13 @@ class Config:
     GROK_BASE_URL = os.getenv("GROK_BASE_URL", "https://api.groq.com/openai/v1")
     LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
     
+    # MongoDB Configuration
+    MONGO_URI = os.getenv("MONGO_URI", "")
+    
+    # JWT Configuration
+    JWT_SECRET = os.getenv("JWT_SECRET", "default_secret_key")
+    JWT_EXPIRY_HOURS = 24
+    
     # Quiz Configuration
     DEFAULT_NUM_QUESTIONS = 5
     MAX_QUESTIONS = 10

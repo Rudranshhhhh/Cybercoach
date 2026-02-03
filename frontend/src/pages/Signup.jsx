@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
-function Login() {
+function Signup() {
     const navigate = useNavigate();
 
     // Form state
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -14,7 +15,7 @@ function Login() {
     // Typing animation state
     const [typedText, setTypedText] = useState('');
     const [showCursor, setShowCursor] = useState(true);
-    const fullText = 'Welcome Back';
+    const fullText = 'Join Us';
 
     useEffect(() => {
         // Typing animation
@@ -39,15 +40,15 @@ function Login() {
         };
     }, []);
 
-    // Split typed text for gradient effect on "Back"
+    // Split typed text for gradient effect
     const renderTypedText = () => {
-        const welcomePart = typedText.slice(0, 8); // "Welcome "
-        const backPart = typedText.slice(8); // "Back"
+        const joinPart = typedText.slice(0, 5); // "Join "
+        const usPart = typedText.slice(5); // "Us"
 
         return (
             <>
-                {welcomePart}
-                {backPart && <span className="gradient-text">{backPart}</span>}
+                {joinPart}
+                {usPart && <span className="gradient-text">{usPart}</span>}
                 <span className={`typing-cursor ${showCursor ? 'visible' : ''}`}>|</span>
             </>
         );
@@ -59,23 +60,23 @@ function Login() {
         setLoading(true);
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/auth/login', {
+            const response = await fetch('http://127.0.0.1:5000/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ name, email, password }),
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Login failed');
+                throw new Error(data.error || 'Registration failed');
             }
 
             // Store token in localStorage
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify({ email: data.email }));
+            localStorage.setItem('user', JSON.stringify({ email: data.email, name: data.name }));
 
             // Redirect to phishing test
             navigate('/test');
@@ -95,12 +96,25 @@ function Login() {
                         {renderTypedText()}
                     </h1>
                     <p className="login-subtitle">
-                        Sign in to continue your cybersecurity journey
+                        Create an account to start your cybersecurity journey
                     </p>
                 </div>
 
                 <form className="login-form" onSubmit={handleSubmit}>
                     {error && <div className="error-message">{error}</div>}
+
+                    <div className="form-group">
+                        <label htmlFor="name" className="form-label">Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            className="form-input"
+                            placeholder="Enter your name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
 
                     <div className="form-group">
                         <label htmlFor="email" className="form-label">Email</label>
@@ -121,23 +135,16 @@ function Login() {
                             type="password"
                             id="password"
                             className="form-input"
-                            placeholder="Enter your password"
+                            placeholder="Create a password (min 6 characters)"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            minLength={6}
                         />
                     </div>
 
-                    <div className="form-options">
-                        <label className="remember-me">
-                            <input type="checkbox" />
-                            <span>Remember me</span>
-                        </label>
-                        <a href="#" className="forgot-password">Forgot password?</a>
-                    </div>
-
                     <button type="submit" className="login-btn-submit" disabled={loading}>
-                        {loading ? 'Signing In...' : 'Sign In'}
+                        {loading ? 'Creating Account...' : 'Sign Up'}
                     </button>
                 </form>
 
@@ -164,11 +171,11 @@ function Login() {
                 </div>
 
                 <p className="signup-prompt">
-                    Don't have an account? <a href="#" className="signup-link" onClick={(e) => { e.preventDefault(); navigate('/signup'); }}>Sign up</a>
+                    Already have an account? <a href="#" className="signup-link" onClick={(e) => { e.preventDefault(); navigate('/login'); }}>Sign in</a>
                 </p>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Signup;

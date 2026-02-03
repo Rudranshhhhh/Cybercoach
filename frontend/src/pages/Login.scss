@@ -290,6 +290,23 @@ $purple-accent: #A18CFE;
     }
 }
 
+// Error message
+.error-message {
+    background: rgba(#ff4444, 0.15);
+    border: 1px solid rgba(#ff4444, 0.3);
+    color: #ff6b6b;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+// Disabled button state
+.login-btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 // Responsive adjustments
 @media (max-width: 480px) {
     .login-page {
