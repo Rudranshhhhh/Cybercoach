@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase';
 import './Login.scss';
 
 function Login() {
@@ -89,6 +91,35 @@ function Login() {
         }
     };
 
+    // Google Sign-In handler
+    const handleGoogleSignIn = async () => {
+        setError('');
+        setLoading(true);
+
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            // Store user info in localStorage
+            localStorage.setItem('token', user.accessToken);
+            localStorage.setItem('user', JSON.stringify({
+                email: user.email,
+                name: user.displayName || user.email.split('@')[0]
+            }));
+
+            // Dispatch event to update header
+            window.dispatchEvent(new Event('userLoggedIn'));
+
+            // Redirect to phishing test
+            navigate('/test');
+        } catch (err) {
+            console.error('Google sign-in error:', err);
+            setError(err.message || 'Google sign-in failed');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="login-page">
             <div className="login-container glow-pulse">
@@ -149,7 +180,7 @@ function Login() {
                 </div>
 
                 <div className="social-login">
-                    <button className="social-btn">
+                    <button className="social-btn" onClick={handleGoogleSignIn} disabled={loading}>
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                             <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
