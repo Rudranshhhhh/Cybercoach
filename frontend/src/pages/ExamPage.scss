@@ -1,0 +1,209 @@
+// Custom colors
+$dark-bg: #152036;
+$light-text: #F4F4F4;
+$primary-blue: #667BFE;
+$accent-blue: #2455C6;
+$purple-accent: #A18CFE;
+$danger-red: #da1e28;
+
+.exam-page {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #030812 0%, #0a1628 50%, #051020 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+
+    &.canceled {
+        background: linear-gradient(135deg, #1a0a0a 0%, #2d1010 50%, #1a0505 100%);
+    }
+}
+
+.exit-btn {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba($light-text, 0.1);
+    border: 1px solid rgba($light-text, 0.2);
+    border-radius: 10px;
+    color: $light-text;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+
+    &:hover {
+        background: rgba($danger-red, 0.3);
+        border-color: $danger-red;
+        color: #fff;
+    }
+}
+
+.exam-content {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.exam-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $light-text;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, $primary-blue 0%, $purple-accent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.exam-instruction {
+    font-size: 1.1rem;
+    color: rgba($light-text, 0.7);
+    margin-bottom: 3rem;
+}
+
+.exam-placeholder {
+    padding: 4rem 2rem;
+    background: rgba($light-text, 0.03);
+    border: 1px dashed rgba($light-text, 0.2);
+    border-radius: 16px;
+    color: rgba($light-text, 0.5);
+    font-size: 1rem;
+}
+
+// Cancel Message
+.cancel-message {
+    text-align: center;
+
+    .cancel-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba($danger-red, 0.2);
+        border: 2px solid $danger-red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: $danger-red;
+        margin: 0 auto 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: $danger-red;
+        margin-bottom: 0.75rem;
+    }
+
+    p {
+        font-size: 1rem;
+        color: rgba($light-text, 0.6);
+    }
+}
+
+// Exit Modal
+.exit-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    backdrop-filter: blur(4px);
+}
+
+.exit-modal {
+    background: rgba(lighten($dark-bg, 5%), 0.95);
+    border: 1px solid rgba($light-text, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+
+    h2 {
+        font-size: 1.5rem;
+        color: $light-text;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        color: rgba($light-text, 0.7);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.cancel-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, $primary-blue 0%, $purple-accent 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($primary-blue, 0.4);
+    }
+}
+
+.confirm-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: $light-text;
+    background: transparent;
+    border: 1px solid rgba($danger-red, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba($danger-red, 0.2);
+        border-color: $danger-red;
+        color: #fff;
+    }
+}
+
+// Responsive
+@media (max-width: 480px) {
+    .exam-title {
+        font-size: 1.75rem;
+    }
+
+    .exit-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .exit-modal {
+        padding: 1.5rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+}

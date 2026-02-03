@@ -56,7 +56,7 @@ function PhishingTest() {
                     <div className="test-actions">
                         <button
                             className="start-test-btn"
-                            onClick={() => navigate('/test/start')}
+                            onClick={() => navigate('/exam')}
                         >
                             Start Test
                         </button>

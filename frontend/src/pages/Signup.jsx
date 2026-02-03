@@ -78,6 +78,9 @@ function Signup() {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify({ email: data.email, name: data.name }));
 
+            // Dispatch event to update header
+            window.dispatchEvent(new Event('userLoggedIn'));
+
             // Redirect to phishing test
             navigate('/test');
         } catch (err) {
