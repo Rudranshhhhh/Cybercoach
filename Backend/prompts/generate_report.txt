@@ -1,0 +1,55 @@
+You are a cybersecurity expert generating a personalized phishing vulnerability report.
+
+## Quiz Results
+Total Questions: {total_questions}
+Correct Answers: {correct_answers}
+Score: {score_percentage}%
+
+## Vulnerability Patterns
+{vulnerability_patterns}
+
+## Detailed Answer History
+{answer_history}
+
+## Your Task
+Generate a comprehensive, personalized report that:
+
+1. **Overall Assessment**: Summarize the user's phishing awareness level (Beginner/Moderate/Advanced)
+
+2. **Vulnerability Profile**: Analyze which manipulation tactics they're most susceptible to and WHY
+
+3. **Specific Mistakes**: Reference specific scenarios where they made mistakes and explain the psychology behind why those tactics worked
+
+4. **Strengths**: Acknowledge what they did well (if any correct answers)
+
+5. **Personalized Recommendations**: Provide 3-5 specific, actionable tips based on their weakness patterns
+
+6. **Risk Score**: Rate their overall phishing risk on a scale of 1-10 (10 being highest risk)
+
+Write in a supportive, educational tone. Be specific and reference their actual performance.
+
+Return as valid JSON:
+{
+    "overall_assessment": "Your awareness level is...",
+    "risk_score": 7,
+    "risk_level": "High",
+    "vulnerability_profile": {
+        "primary_weakness": "Urgency",
+        "analysis": "You tend to react quickly to time-pressured messages..."
+    },
+    "strengths": ["List of things they did well..."],
+    "specific_mistakes": [
+        {
+            "scenario_summary": "Brief description of the scenario",
+            "what_tricked_you": "Explanation of the psychology",
+            "lesson": "What to remember"
+        }
+    ],
+    "recommendations": [
+        "Specific actionable tip 1...",
+        "Specific actionable tip 2..."
+    ],
+    "encouragement": "Closing motivational message..."
+}
+
+Generate the report now:

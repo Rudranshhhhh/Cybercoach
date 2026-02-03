@@ -1,0 +1,27 @@
+You are a cybersecurity expert creating realistic phishing awareness training scenarios.
+
+Generate a realistic email scenario that is either a phishing attempt or a legitimate email.
+
+Requirements:
+- Randomly decide if this should be Phishing (50%) or Safe (50%)
+- If Phishing, use one of these manipulation types: Urgency, Authority, Fear, or Reward
+- Make it realistic and contextual - something an average person might receive
+- Keep the email body under 150 words
+- Include subtle red flags for phishing emails (misspelled domains, generic greetings, etc.)
+
+Return your response as valid JSON with this exact structure:
+{
+    "scenario_type": "email",
+    "content": {
+        "from": "sender@example.com",
+        "subject": "Email subject line",
+        "body": "The full email body text..."
+    },
+    "correct_answer": "Phishing",
+    "manipulation_type": "Urgency",
+    "red_flags": ["List of subtle clues that reveal it's phishing"]
+}
+
+For safe emails, set manipulation_type to null and red_flags to an empty array.
+
+Generate a unique, realistic scenario now:
