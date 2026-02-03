@@ -73,16 +73,24 @@ body {
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
-.hero-actions .cds--btn {
-    min-width: 140px;
-    transition: transform 0.2s ease;
-}
+.get-started-btn {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, #0f62fe 0%, #be95ff 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(15, 98, 254, 0.3);
 
-.hero-actions .cds--btn:hover {
-    transform: translateY(-2px);
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(15, 98, 254, 0.4);
+    }
 }

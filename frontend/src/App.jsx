@@ -16,8 +16,7 @@ function App() {
               from beginner to expert.
             </p>
             <div className="hero-actions">
-              <button className="cds--btn cds--btn--primary">Get Started</button>
-              <button className="cds--btn cds--btn--tertiary">Learn More</button>
+              <button className="get-started-btn">Get Started</button>
             </div>
           </div>
         </section>
