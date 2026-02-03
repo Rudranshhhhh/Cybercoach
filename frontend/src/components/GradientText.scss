@@ -1,0 +1,24 @@
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-text-animated {
+    /* Base styles applied via inline style in component */
+}
+
+.with-border {
+    padding: 0.25em 0.5em;
+    border: 2px solid;
+    border-image: linear-gradient(90deg, #667BFE, #A18CFE, #2455C6, #667BFE) 1;
+    border-image-slice: 1;
+}
