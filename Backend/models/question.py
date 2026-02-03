@@ -50,9 +50,17 @@ class Question:
     
     def to_user_dict(self) -> Dict[str, Any]:
         """Convert question to dictionary for user (without answers)."""
-        return {
+        result = {
             "id": self.id,
-            "scenario_type": self.scenario_type.value,
+            "scenario_type": getattr(self, 'scenario_type_str', self.scenario_type.value),
             "content": self.content,
             "question": "Is this Phishing or Safe?"
         }
+        
+        # Add optional fields if they exist
+        if hasattr(self, 'threat_vector'):
+            result["threat_vector"] = self.threat_vector
+        if hasattr(self, 'intent_analysis'):
+            result["intent_analysis"] = self.intent_analysis
+            
+        return result

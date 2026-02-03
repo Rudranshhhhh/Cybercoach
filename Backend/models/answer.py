@@ -28,23 +28,32 @@ class Answer:
 
 @dataclass
 class AnswerEvaluation:
-    """Represents the LLM's evaluation of an answer."""
+    """Represents the LLM's evaluation of an answer with threat intelligence."""
     correct: bool
     explanation: str
     manipulation_that_worked: Optional[str] = None
     learning_tip: Optional[str] = None
     correct_answer: Optional[str] = None
+    # Threat Intelligence Fields
+    threat_vector: Optional[str] = None
+    complexity_score: Optional[int] = None
+    why_its_hard: Optional[str] = None
+    psychological_exploit: Optional[str] = None
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert evaluation to dictionary for JSON response."""
         result = {
             "correct": self.correct,
-            "explanation": self.explanation
+            "explanation": self.explanation,
+            "learning_tip": self.learning_tip,
+            "threat_vector": self.threat_vector,
+            "complexity_score": self.complexity_score,
+            "why_its_hard": self.why_its_hard,
+            "psychological_exploit": self.psychological_exploit
         }
         
         if not self.correct:
             result["correct_answer"] = self.correct_answer
             result["manipulation_type"] = self.manipulation_that_worked
-            result["learning_tip"] = self.learning_tip
         
         return result

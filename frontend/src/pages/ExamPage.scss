@@ -5,37 +5,64 @@ $primary-blue: #667BFE;
 $accent-blue: #2455C6;
 $purple-accent: #A18CFE;
 $danger-red: #da1e28;
+$success-green: #24a148;
 
 .exam-page {
     min-height: 100vh;
     width: 100%;
     background: linear-gradient(135deg, #030812 0%, #0a1628 50%, #051020 100%);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     position: relative;
-    padding: 2rem;
+    padding: 1rem;
 
     &.canceled {
+        align-items: center;
+        justify-content: center;
         background: linear-gradient(135deg, #1a0a0a 0%, #2d1010 50%, #1a0505 100%);
     }
 }
 
+// Header
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba($light-text, 0.03);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: $light-text;
+    font-size: 1rem;
+}
+
+.difficulty-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .exit-btn {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     background: rgba($light-text, 0.1);
     border: 1px solid rgba($light-text, 0.2);
     border-radius: 10px;
     color: $light-text;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 100;
 
     &:hover {
         background: rgba($danger-red, 0.3);
@@ -45,35 +72,1037 @@ $danger-red: #da1e28;
 }
 
 .exam-content {
-    text-align: center;
-    max-width: 800px;
-    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
-.exam-title {
-    font-size: 2.5rem;
+// Loading State
+.loading-state {
+    text-align: center;
+    color: rgba($light-text, 0.7);
+
+    .loader {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba($light-text, 0.1);
+        border-top-color: $primary-blue;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Question Container
+.question-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.question-prompt {
+    text-align: center;
+    font-size: 1.5rem;
     font-weight: 600;
     color: $light-text;
+    margin-bottom: 1.5rem;
+}
+
+// Email Preview
+.email-preview {
+    background: rgba($light-text, 0.05);
+    border: 1px solid rgba($light-text, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.email-header {
+    background: rgba($dark-bg, 0.5);
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba($light-text, 0.1);
+}
+
+.email-from,
+.email-subject {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .label {
+        color: rgba($light-text, 0.5);
+        font-size: 0.85rem;
+        min-width: 60px;
+    }
+
+    .value {
+        color: $light-text;
+        font-size: 0.9rem;
+        word-break: break-all;
+    }
+}
+
+.email-body {
+    padding: 1.5rem;
+    color: rgba($light-text, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+// Threat Vector Preview Badge
+.threat-vector-preview {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(#ff5722, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     margin-bottom: 1rem;
+    font-size: 0.85rem;
+
+    .vector-icon {
+        font-size: 1rem;
+    }
+
+    .vector-name {
+        color: #ff7043;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+}
+
+// Scenario Preview Container
+.scenario-preview {
+    margin-bottom: 1.5rem;
+}
+
+// Popup/System Notification Styles
+.popup-preview {
+    background: linear-gradient(145deg, #1e1e2e 0%, #2a2a3e 100%);
+    border: 1px solid rgba($light-text, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    .popup-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba($light-text, 0.1);
+    }
+
+    .popup-icon {
+        font-size: 1.5rem;
+    }
+
+    .popup-source {
+        color: $primary-blue;
+        font-weight: 600;
+    }
+
+    .popup-body {
+        color: rgba($light-text, 0.9);
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+    }
+
+    .popup-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .popup-btn {
+        padding: 0.5rem 1.25rem;
+        border-radius: 6px;
+        border: none;
+        font-weight: 600;
+        cursor: default;
+        font-family: inherit;
+
+        &.approve {
+            background: $success-green;
+            color: white;
+        }
+
+        &.deny {
+            background: #666;
+            color: white;
+        }
+    }
+}
+
+// Slack/Teams Message Styles
+.slack-preview {
+    background: #1a1a2e;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid #4a154b;
+
+    .slack-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .slack-avatar {
+        width: 36px;
+        height: 36px;
+        background: #611f69;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .slack-user {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .slack-message {
+        color: rgba($light-text, 0.9);
+        line-height: 1.6;
+        padding-left: 48px;
+    }
+}
+
+// OAuth Permission Screen Styles
+.oauth-preview {
+    background: linear-gradient(145deg, #fff 0%, #f5f5f5 100%);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #333;
+
+    .oauth-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .oauth-app {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a73e8;
+        margin-bottom: 0.5rem;
+    }
+
+    .oauth-action {
+        color: #666;
+    }
+
+    .oauth-permissions {
+        background: #fff3e0;
+        border: 1px solid #ffcc80;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        ul {
+            margin: 0.5rem 0 0 1rem;
+            padding: 0;
+        }
+
+        .permission-item {
+            color: #e65100;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .oauth-body {
+        color: #666;
+        font-size: 0.9rem;
+    }
+}
+
+// QR Code Poster Styles
+.qr-preview {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    color: #333;
+
+    .qr-poster {
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .qr-code {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .qr-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1976d2;
+    }
+
+    .qr-context {
+        color: #666;
+        font-style: italic;
+    }
+}
+
+// Code Review Styles
+.code-preview {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Fira Code', 'Consolas', monospace;
+
+    .code-header {
+        background: #2d2d2d;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #444;
+    }
+
+    .code-source {
+        color: #6a9955;
+        font-weight: 600;
+    }
+
+    .code-title {
+        color: #dcdcdc;
+    }
+
+    .code-block {
+        padding: 1rem;
+        margin: 0;
+        color: #d4d4d4;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        overflow-x: auto;
+        white-space: pre;
+    }
+}
+
+// SMS / iMessage Styles
+.sms-preview {
+    background: linear-gradient(180deg, #f2f2f7 0%, #e5e5ea 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 375px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+
+    .sms-header {
+        background: #f9f9f9;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-bottom: 1px solid #c6c6c8;
+
+        .sms-carrier {
+            font-size: 0.7rem;
+            color: #8e8e93;
+        }
+
+        .sms-contact {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+        }
+    }
+
+    .sms-body {
+        padding: 1rem;
+        min-height: 150px;
+        background: #fff;
+    }
+
+    .sms-bubble {
+        max-width: 80%;
+        padding: 0.75rem 1rem;
+        border-radius: 18px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+
+        &.incoming {
+            background: #e5e5ea;
+            color: #000;
+            border-bottom-left-radius: 4px;
+        }
+    }
+
+    .sms-input {
+        background: #f9f9f9;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        color: #8e8e93;
+        font-size: 0.85rem;
+        border-top: 1px solid #c6c6c8;
+    }
+}
+
+// WhatsApp Styles
+.whatsapp-preview {
+    background: #0b141a;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 375px;
+    margin: 0 auto;
+
+    .whatsapp-header {
+        background: #1f2c34;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .whatsapp-back {
+            color: #00a884;
+            font-size: 1.25rem;
+        }
+
+        .whatsapp-avatar {
+            width: 40px;
+            height: 40px;
+            background: #00a884;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .whatsapp-contact {
+            flex: 1;
+
+            .whatsapp-name {
+                color: #e9edef;
+                font-weight: 500;
+            }
+
+            .whatsapp-status {
+                color: #8696a0;
+                font-size: 0.75rem;
+            }
+        }
+
+        .whatsapp-icons {
+            color: #aebac1;
+            font-size: 1.1rem;
+        }
+    }
+
+    .whatsapp-body {
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%230b141a'/%3E%3C/svg%3E");
+        background-color: #0b141a;
+        padding: 1rem;
+        min-height: 150px;
+    }
+
+    .whatsapp-bubble {
+        max-width: 85%;
+        padding: 0.5rem 0.75rem;
+        border-radius: 7.5px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        position: relative;
+
+        &.incoming {
+            background: #202c33;
+            color: #e9edef;
+            border-top-left-radius: 0;
+        }
+
+        .whatsapp-time {
+            display: block;
+            text-align: right;
+            font-size: 0.65rem;
+            color: #8696a0;
+            margin-top: 0.25rem;
+        }
+    }
+
+    .whatsapp-input {
+        background: #1f2c34;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: #8696a0;
+
+        .whatsapp-text-input {
+            flex: 1;
+            background: #2a3942;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    }
+}
+
+// Meta AI Styles
+.meta-ai-preview {
+    background: linear-gradient(135deg, #0668e1 0%, #1877f2 50%, #0084ff 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .meta-ai-header {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .meta-ai-logo {
+            font-size: 1.5rem;
+        }
+
+        .meta-ai-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .meta-ai-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+    }
+
+    .meta-ai-body {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1.5rem;
+        min-height: 150px;
+    }
+
+    .meta-ai-bubble {
+        display: flex;
+        gap: 1rem;
+
+        .meta-ai-icon {
+            font-size: 2rem;
+        }
+
+        .meta-ai-message {
+            color: #1c1e21;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    }
+
+    .meta-ai-actions {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        .meta-ai-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1877f2;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: default;
+            font-family: inherit;
+        }
+    }
+}
+
+// AI-to-AI Chat Styles
+.ai-chat-preview {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 420px;
+    margin: 0 auto;
+
+    .ai-chat-header {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .ai-chain-icon {
+            font-size: 1.25rem;
+        }
+
+        .ai-chat-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+    }
+
+    .ai-chat-body {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1.25rem;
+    }
+
+    .ai-message {
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+
+        &.source {
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+        }
+
+        &.forwarded {
+            background: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+        }
+
+        .ai-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.25rem;
+        }
+
+        .ai-text {
+            color: #1c1e21;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    }
+
+    .ai-arrow {
+        text-align: center;
+        font-size: 1.25rem;
+        margin: 0.5rem 0;
+    }
+
+    .ai-chat-actions {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        .ai-approve-btn {
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: default;
+            font-family: inherit;
+        }
+
+        .ai-deny-btn {
+            background: #666;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: default;
+            font-family: inherit;
+        }
+    }
+}
+
+// Answer Buttons
+.answer-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.answer-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &.phishing {
+        background: linear-gradient(135deg, $danger-red 0%, #ff5252 100%);
+        color: #fff;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba($danger-red, 0.4);
+        }
+    }
+
+    &.safe {
+        background: linear-gradient(135deg, $success-green 0%, #4caf50 100%);
+        color: #fff;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba($success-green, 0.4);
+        }
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    &.selected {
+        transform: scale(1.05);
+    }
+}
+
+// Feedback Panel
+.feedback-panel {
+    background: rgba($light-text, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px solid;
+
+    &.correct {
+        border-color: $success-green;
+
+        .feedback-header {
+            color: $success-green;
+        }
+    }
+
+    &.incorrect {
+        border-color: $danger-red;
+
+        .feedback-header {
+            color: $danger-red;
+        }
+    }
+}
+
+.feedback-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feedback-explanation {
+    color: rgba($light-text, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+// Threat Intelligence Badge
+.threat-intel-badge {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(#9c27b0, 0.15);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+
+    .threat-label {
+        color: rgba($light-text, 0.7);
+        font-size: 0.85rem;
+    }
+
+    .threat-value {
+        color: #ce93d8;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: capitalize;
+    }
+
+    .complexity-badge {
+        margin-left: auto;
+        background: rgba($danger-red, 0.2);
+        color: #ff8a80;
+        padding: 0.25rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+}
+
+// Why It's Hard
+.why-hard-box {
+    background: rgba(#ff9800, 0.12);
+    border-left: 3px solid #ff9800;
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    color: rgba($light-text, 0.85);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+
+    strong {
+        color: #ffb74d;
+    }
+}
+
+.feedback-tip {
+    background: rgba($primary-blue, 0.15);
+    border-left: 3px solid $primary-blue;
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    color: rgba($light-text, 0.85);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.next-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, $primary-blue 0%, $purple-accent 100%);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($primary-blue, 0.4);
+    }
+}
+
+// Report Styles
+.report-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.report-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
     background: linear-gradient(135deg, $primary-blue 0%, $purple-accent 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin-bottom: 2rem;
 }
 
-.exam-instruction {
-    font-size: 1.1rem;
-    color: rgba($light-text, 0.7);
-    margin-bottom: 3rem;
+.report-score {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.exam-placeholder {
-    padding: 4rem 2rem;
+.score-circle {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba($primary-blue, 0.2) 0%, rgba($purple-accent, 0.2) 100%);
+    border: 3px solid $primary-blue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.score-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $light-text;
+}
+
+.risk-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.low {
+        background: rgba($success-green, 0.2);
+        color: $success-green;
+    }
+
+    &.moderate {
+        background: rgba(#ff9800, 0.2);
+        color: #ff9800;
+    }
+
+    &.high {
+        background: rgba($danger-red, 0.2);
+        color: $danger-red;
+    }
+
+    &.critical {
+        background: rgba(#9c27b0, 0.2);
+        color: #9c27b0;
+    }
+}
+
+.report-section {
     background: rgba($light-text, 0.03);
-    border: 1px dashed rgba($light-text, 0.2);
+    border: 1px solid rgba($light-text, 0.1);
     border-radius: 16px;
-    color: rgba($light-text, 0.5);
-    font-size: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    h2 {
+        font-size: 1.1rem;
+        color: $light-text;
+        margin-bottom: 1rem;
+    }
+}
+
+// Bias Heatmap
+.bias-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bias-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bias-name {
+    min-width: 100px;
+    font-size: 0.85rem;
+    color: rgba($light-text, 0.8);
+    text-transform: capitalize;
+}
+
+.bias-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba($light-text, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bias-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $success-green 0%, #ff9800 50%, $danger-red 100%);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.bias-value {
+    min-width: 45px;
+    font-size: 0.85rem;
+    color: $light-text;
+    text-align: right;
+}
+
+// Threat Forecast
+.threat-card {
+    background: rgba($danger-red, 0.1);
+    border: 1px solid rgba($danger-red, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.threat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.threat-vector {
+    font-weight: 600;
+    color: $danger-red;
+}
+
+.threat-probability {
+    background: rgba($danger-red, 0.2);
+    color: $danger-red;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.threat-scenario {
+    color: rgba($light-text, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+// Defense List
+.defense-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+        color: rgba($light-text, 0.85);
+        font-size: 0.9rem;
+
+        &::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: $success-green;
+        }
+    }
+}
+
+.finish-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, $primary-blue 0%, $purple-accent 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba($primary-blue, 0.4);
+    }
 }
 
 // Cancel Message
@@ -123,23 +1152,23 @@ $danger-red: #da1e28;
     background: rgba(lighten($dark-bg, 5%), 0.95);
     border: 1px solid rgba($light-text, 0.1);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2rem;
     max-width: 420px;
     width: 90%;
     text-align: center;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         color: $light-text;
         margin-bottom: 1rem;
     }
 
     p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         color: rgba($light-text, 0.7);
         line-height: 1.6;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -150,8 +1179,8 @@ $danger-red: #da1e28;
 }
 
 .cancel-btn {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
     font-weight: 600;
     font-family: inherit;
     color: #fff;
@@ -168,8 +1197,8 @@ $danger-red: #da1e28;
 }
 
 .confirm-btn {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
     font-weight: 600;
     font-family: inherit;
     color: $light-text;
@@ -187,23 +1216,21 @@ $danger-red: #da1e28;
 }
 
 // Responsive
-@media (max-width: 480px) {
-    .exam-title {
-        font-size: 1.75rem;
-    }
-
-    .exit-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-        top: 1rem;
-        right: 1rem;
-    }
-
-    .exit-modal {
-        padding: 1.5rem;
-    }
-
-    .modal-actions {
+@media (max-width: 600px) {
+    .exam-header {
         flex-direction: column;
+        gap: 1rem;
+    }
+
+    .answer-buttons {
+        flex-direction: column;
+    }
+
+    .answer-btn {
+        max-width: 100%;
+    }
+
+    .report-title {
+        font-size: 1.5rem;
     }
 }

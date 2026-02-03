@@ -135,16 +135,15 @@ def get_question():
     # Return question without correct answer
     progress = quiz_service.get_progress(session)
     
-    return jsonify({
-        "question_id": question.id,
-        "scenario": {
-            "type": question.scenario_type.value,
-            **question.content
-        },
-        "question": "Is this Phishing or Safe?",
+    response_data = {
+        "question": question.to_user_dict(),
         "current_question": progress["current_question"],
-        "total_questions": progress["total_questions"]
-    })
+        "total_questions": progress["total_questions"],
+        "difficulty_level": session.difficulty_level
+    }
+    
+    print(f"DEBUGGING RESPONSE: {response_data}")
+    return jsonify(response_data)
 
 
 @app.route('/api/quiz/answer', methods=['POST'])

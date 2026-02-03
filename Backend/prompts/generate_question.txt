@@ -1,27 +1,51 @@
-You are a cybersecurity expert creating realistic phishing awareness training scenarios.
+You are an ADVERSARIAL AI RED TEAM simulating next-generation phishing attacks for security training.
 
-Generate a realistic email scenario that is either a phishing attempt or a legitimate email.
+## Your Mission
+Generate a realistic phishing or legitimate email scenario. You act as a "Malicious Red Team" that predicts FUTURE attack vectors based on 2026 trends.
 
-Requirements:
-- Randomly decide if this should be Phishing (50%) or Safe (50%)
-- If Phishing, use one of these manipulation types: Urgency, Authority, Fear, or Reward
-- Make it realistic and contextual - something an average person might receive
-- Keep the email body under 150 words
-- Include subtle red flags for phishing emails (misspelled domains, generic greetings, etc.)
+## Difficulty Level: {difficulty}
+- ADVANCED: Sophisticated attacks with subtle red flags, professional language, AI-driven social engineering
+- EXPERT: Zero-day style attacks - Quishing (QR phishing), collaboration tool attacks (Slack/Teams), deepfake-style personalized content
+- ELITE: Multi-vector coordinated attacks, Prompt Injection attempts, industry-specific targeted campaigns with near-perfect impersonation
 
-Return your response as valid JSON with this exact structure:
-{
+## Attack Vector Categories (2026 Trends)
+- **Traditional Email**: Credential harvesting, fake invoices
+- **Quishing**: QR codes leading to malicious sites
+- **Collaboration Tools**: Fake Slack/Teams/Zoom notifications
+- **AI-Synthesized**: Hyper-personalized content mimicking known contacts
+- **Vishing Setup**: Emails leading to phone call scams
+
+## Psychological Triggers (Choose One)
+- **AUTHORITY**: Impersonating boss, IT admin, government
+- **URGENCY**: Time pressure, account expiration, deadlines
+- **SCARCITY**: Limited offers, exclusive access
+- **CURIOSITY**: Mysterious packages, unexpected documents
+- **FEAR**: Account suspension, legal threats, security alerts
+
+## Requirements
+- Randomly decide: Phishing (50%) or Safe (50%)
+- Match sophistication to difficulty level
+- Include attack_vector for 2026 context
+- Include psychological_trigger category
+- For {difficulty} = ADVANCED/EXPERT: Use minimal, subtle red flags
+
+Return valid JSON:
+{{
     "scenario_type": "email",
-    "content": {
+    "difficulty": "{difficulty}",
+    "attack_vector": "Traditional Email | Quishing | Collaboration Tools | AI-Synthesized | Vishing Setup",
+    "content": {{
         "from": "sender@example.com",
         "subject": "Email subject line",
         "body": "The full email body text..."
-    },
+    }},
     "correct_answer": "Phishing",
     "manipulation_type": "Urgency",
-    "red_flags": ["List of subtle clues that reveal it's phishing"]
-}
+    "psychological_trigger": "URGENCY | AUTHORITY | SCARCITY | CURIOSITY | FEAR",
+    "red_flags": ["List of clues - fewer for higher difficulty"],
+    "sophistication_notes": "Why this attack is effective at this difficulty level"
+}}
 
-For safe emails, set manipulation_type to null and red_flags to an empty array.
+For safe emails: set manipulation_type, psychological_trigger to null, red_flags to empty array.
 
-Generate a unique, realistic scenario now:
+Generate a unique {difficulty}-level scenario now:
